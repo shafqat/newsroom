@@ -89,9 +89,9 @@ def writer(writer_id):
     for article in articles:
         if str(article):
             embedly_url = 'https://api.embed.ly/1/oembed?key=21ef9ba1f65e44cf8efd908f7820ca6b&url=' + str(article)
-            print embedly_url
             response = urllib2.urlopen(embedly_url)
             article_result.append(json.loads(response.read()))
+            print article_result
 
     return render_template('writer.html', writer_result=writer_result, article_result=article_result)
 
