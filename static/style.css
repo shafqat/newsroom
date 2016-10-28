@@ -12,9 +12,11 @@
 html {
 	margin: 0;
 	padding: 0;
+	font-family: 'Lato', helvetica, arial, sans-serif;
 	}
 body { 
 	font: 75% georgia, sans-serif;
+	font-family: 'Lato', helvetica, arial, sans-serif;
 	line-height: 1.88889;
 	color: #555753; 
 	background: #fff url(blossoms.jpg) no-repeat bottom right; 
