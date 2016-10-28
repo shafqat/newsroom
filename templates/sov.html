@@ -1,0 +1,21 @@
+{# index.html #}
+{% extends "base.html" %}
+{% block body %}
+
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+
+    <!--Search form-->
+    <br />
+    <form method="post" action="/sov/login_sov/tw/">
+        <input type="text" name="searchterm1" value="NewsCred" class="textbox"/>
+        <input type="text" name="searchterm2" value="Percolate" class="textbox" />
+        <input type="text" name="searchterm3" value="Contently" class="textbox"/>
+        <input type="text" name="searchterm4" value="Kapost" class="textbox"/>
+        <input type="text" name="topics" value='"Content Marketing" OR marketing OR content' class="textbox"/>
+     	<br /><br /><br />
+
+
+        <input type="submit" value="Calculate Share of Voice Bitches!">
+    </form>
+
+{% endblock %}

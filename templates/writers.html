@@ -1,0 +1,61 @@
+{# index.html #}
+{% extends "base.html" %}
+{% block body %}
+
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='app.css') }}">
+
+
+    <!--Search form-->
+    <br />
+    <h4>Writers</h4><br />
+ 
+	<br/><br/>
+		<table class="nc-cal-table table-header">
+			<thead>
+				<tr>
+					<th class="sortable title-column">
+						<label class="small">Name</label>
+					</th>
+				    <th class="sortable title-column">
+						<label class="small">Contact</label>    
+				    </th>
+				   	<th class="sortable title-column">
+						<label class="small">Bio</label>    
+				    </th>
+   				     <th class="sortable title-column">
+						<label class="small">Location</label>    
+				    </th>
+				     <th class="sortable title-column">
+						<label class="small">Area of Expertise</label>    
+				    </th>
+				</tr>
+			</thead>
+			<tbody>
+	    	{% for writer in writers %}
+			  <tr>
+
+			     <td class="task-status other-column">
+			    	<a href="/writer/{{writer[0]}}">{{writer[1]}}</a>
+			    </td>
+			         <td class="task-status other-column">
+			    	{{writer[12]}}
+			    </td>
+			         <td class="task-status other-column">
+			    	{{writer[2]}}
+			    </td>
+			         <td class="task-status other-column">
+			    	{{writer[4]}} {{writer[5]}}
+
+			    </td>
+			         <td class="task-status other-column">
+			    	{{writer[7]}} {{writer[16]}} {{writer[17]}}
+
+
+			    </td>
+
+			  </tr>
+		   	{% endfor %}
+		   </tbody>
+		</table>
+
+{% endblock %}

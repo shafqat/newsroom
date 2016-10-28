@@ -1,0 +1,142 @@
+{# index.html #}
+{% extends "base.html" %}
+{% block body %}
+
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='app.css') }}">
+
+
+    <!--Search form-->
+    <br />
+    <h4>NewsCred</h4><br />
+    <a href = "/NewsCred/people/">See entire people database:</a><br />
+
+    <a href = "/NewsCred/people/important/">See most important people:</a><br />
+
+    <a href = "/NewsCred/people/engaged/">See most engaged people:</a><br />
+
+    <a href = "/NewsCred/people/recent">See most recent people:</a><br />
+
+    <a href = "/NewsCred/updatepeople/">Kick off PeopleDB update process (requires twitter authentification).</a><br /><br />
+
+
+    <h4>Percolate</h4><br />
+    <a href = "/Percolate/people/">See entire people database:</a><br />
+
+    <a href = "/Percolate/people/important/">See most important people:</a><br />
+
+    <a href = "/Percolate/people/engaged/">See most engaged people:</a><br />
+    
+    <a href = "/Percolate/people/recent">See most recent people:</a><br />
+
+    <a href = "/Percolate/updatepeople/">Kick off PeopleDB update process (requires twitter authentification).</a><br /><br />
+
+
+
+   <h4>Contently</h4><br />
+   <a href = "/Contently/people/">See entire people database:</a><br />
+
+    <a href = "/Contently/people/important/">See most important people:</a><br />
+
+    <a href = "/Contently/people/engaged/">See most engaged people:</a><br />
+    
+    <a href = "/Contently/people/recent">See most recent people:</a><br />
+
+    <a href = "/Contently/updatepeople/">Kick off PeopleDB update process (requires twitter authentification).</a><br /><br />
+
+    <br /><h4>Some interesting stats</h4><br />
+
+    {%if stats %}
+		{% for stat in stats %}
+			<p>
+				{{stat[0]}} readers' average klout score is {{"{0:.0f}".format(stat[1])}}, average twitter followers are {{"{0:.0f}".format(stat[2])}} and average Importance Score is {{"{0:.0f}".format(stat[3])}} </p>
+		{%endfor%}
+	{%endif%}
+
+
+    {%if followers %}
+		{% for profile in followers %}
+			<p>
+				{{profile[0]}} total reach via Twitter followers is {{"{:,}".format(profile[1])}}
+			</p>
+		{%endfor%}
+	{%endif%}
+
+
+	<br />
+	{%if int_people %}
+	<label class="small"> Here are some important people who engaged with our content in the last couple days. Click on any name to see their detailed profile and content journey</label>
+	<br/><br/>
+		<table class="nc-cal-table table-header">
+			<thead>
+				<tr>
+					<th class="sortable title-column">
+						<label class="small">Thumbnail</label>
+					</th>
+				    <th class="sortable title-column">
+						<label class="small">Name</label>    
+				    </th>
+				   	<th class="sortable title-column">
+						<label class="small">Title</label>    
+				    </th>
+				     <th class="sortable title-column">
+						<label class="small">Company</label>  
+				     <th class="sortable title-column">
+						<label class="small">Importance</label>    
+				    </th>
+				    </th>
+				     <th class="sortable title-column">
+						<label class="small">Klout</label>    
+				    </th>
+				     <th class="sortable title-column">
+						<label class="small">Followers</label>    
+				    </th>
+
+			
+				    <th class="sortable title-column">
+						<label class="small">Last Seen</label>    
+				    </th>
+				     <th class="sortable title-column">
+						<label class="small">First Seen</label>    
+				    </th>
+
+				</tr>
+			</thead>
+			<tbody>
+	    	{% for person in int_people %}
+			  <tr>
+			  	<td class="task-status other-column">
+			    	<img class="user-avatar" src='{{person[12]}}'/>
+			    </td>
+			    <td class="task-status other-column">
+			    	<a href="/{{person[14]}}/person/{{person[3]}}">{{person[1]}}</a>
+			    </td>
+				<td class="task-status other-column">
+			    	{{person[10]}}
+			    </td>
+			     <td class="task-status other-column">
+			    	{{person[11]}}
+			    </td>
+			    <td class="task-status other-column">
+			    	{{"{0:.0f}".format(person[15])}}
+			    </td>
+			   
+			     <td class="task-status other-column">
+			    	{{person[6]}}
+			    </td>
+			     <td class="task-status other-column">
+			    	{{person[9]}}
+			    </td>
+			     
+			     <td class="task-status other-column">
+			      	{{person[7]}}
+			    </td>
+			     <td class="task-status other-column">
+			    	{{person[8]}}
+			    </td>
+
+			  </tr>
+		   	{% endfor %}
+		   </tbody>
+		</table>
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,96 @@
+{# index.html #}
+{% extends "base.html" %}
+{% block body %}
+
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='mason.css') }}">
+	<p class="light fleft">Go Back to <a href = "/">Writers</a></p>
+	{%if writer_result %}
+	<H3> Writer Profile Page </H3>
+	<table cellpadding="3" cellspacing="0">
+    	{% for writer in writer_result %}
+		  <tr>
+		  	<td>
+		    	<img src='{{writer[20]}}' height=100 width =100 />
+		    </td>
+		    <td>
+		    	<p><a href="{{writer[3]}}">{{writer[1]}}</a></p>
+		    </td>
+		    
+		  </tr>
+		    
+		  <tr>
+		  	<td></td>
+		  	<td >
+		    	<div class="status post">Writer Tier: {{writer[15]}}</div>
+		    </td>
+		  </tr>
+		  <tr>
+		  	<td></td>
+		     <td >
+		      	<p>Bio: {{writer[2]}}</p>
+		    </td>
+		  </tr>
+		 </table>
+		 	<table cellpadding="3" cellspacing="0">
+
+		  <tr>
+		  	<td></td>
+		    <td >
+		    	<p>Contact: {{writer[12]}}</p>
+		    </td>
+		    <td >
+		    	<p>Location: {{writer[4]}} {{writer[5]}}</p>
+		    </td>
+		   </tr>
+
+		   
+			<tr>
+		   	<td></td>
+		    <td >
+		    	<p>Areas of Expertise: {{writer[7]}} {{writer[16]}} {{writer[17]}}</p>
+		    </td>
+		   	</tr>
+			<tr>
+		   	<td></td>
+		    <td >
+		    	<p>Style Highlights: {{writer[8]}}</p>
+		    </td>
+		   	<td >
+		    	<p>Brands Worked With: {{writer[9]}}</p>
+		    </td>
+		   	</tr>
+			<tr>
+		   	<td></td>
+		    <td >
+		    	<p>Where Pubished: {{writer[10]}}</p>
+		    </td>
+		    <td >
+		    	<p>Writing Sample: {{writer[11]}}</p>
+		    </td>
+		   	</tr>
+		  </tr>
+
+	   	{% endfor %}
+	</table>
+	<br><br>
+	{% endif %}
+
+	
+	{%if article_result%}
+
+<div class="masonry">    
+
+	{% for article in article_result %}
+
+	<div class="item">
+		<img src="{{article['thumbnail_url']}}">
+	    <p><b>{{article['title']}}</b></p>
+	    <p>{{article['description']}}</p>
+  	</div>
+		{% endfor %}
+</div>
+	{% endif %}
+
+{% endblock %}
+
+

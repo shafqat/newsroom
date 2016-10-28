@@ -1,0 +1,17 @@
+{# index.html #}
+{% extends "base.html" %}
+{% block body %}
+
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+
+    <!--Search form-->
+    <br />
+    <form method="post" action="/listening/login/tw/">
+        <input type="text" name="searchterm1" value="NewsCred" class="textbox"/>
+        <input type="text" name="searchterm2" value="Percolate" class="textbox" />
+        <input type="text" name="searchterm3" value="Contently" class="textbox"/>
+
+        <input type="submit" value="Start Listening">
+    </form>
+
+{% endblock %}

@@ -1,0 +1,315 @@
+{# index.html #}
+{% extends "base.html" %}
+{% block body %}
+
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='app.css') }}">
+    
+	<h3 class="light fleft">Go Back to <a href = "/peopleDB/">PeopleDB Home</a></h3>
+	{%if important_people %}
+	<label class="small"> Important People - Click on any name to see their detailed profile and content journey</label>
+	<br/><br/>
+		<table class="nc-cal-table table-header">
+			<thead>
+				<tr>
+					<th class="sortable title-column">
+						<label class="small">Thumbnail</label>
+					</th>
+				    <th class="sortable title-column">
+						<label class="small">Name</label>    
+				    </th>
+				   	<th class="sortable title-column">
+						<label class="small">Title</label>    
+				    </th>
+				     <th class="sortable title-column">
+						<label class="small">Company</label>  
+				     <th class="sortable title-column">
+						<label class="small">Importance</label>    
+				    </th>
+				    </th>
+				     <th class="sortable title-column">
+						<label class="small">Klout</label>    
+				    </th>
+				     <th class="sortable title-column">
+						<label class="small">Followers</label>    
+				    </th>
+
+			
+				    <th class="sortable title-column">
+						<label class="small">Last Seen</label>    
+				    </th>
+				     <th class="sortable title-column">
+						<label class="small">First Seen</label>    
+				    </th>
+
+				</tr>
+			</thead>
+			<tbody>
+	    	{% for person in important_people %}
+			  <tr>
+			  	<td class="task-status other-column">
+			    	<img class="user-avatar" src='{{person[12]}}'/>
+			    </td>
+			    <td class="task-status other-column">
+			    	<a href="/{{person[14]}}/person/{{person[3]}}">{{person[1]}}</a>
+			    </td>
+				<td class="task-status other-column">
+			    	{{person[10]}}
+			    </td>
+			     <td class="task-status other-column">
+			    	{{person[11]}}
+			    </td>
+			    <td class="task-status other-column">
+			    	{{"{0:.0f}".format(person[15])}}
+			    </td>
+			   
+			     <td class="task-status other-column">
+			    	{{person[6]}}
+			    </td>
+			     <td class="task-status other-column">
+			    	{{person[9]}}
+			    </td>
+			     
+			     <td class="task-status other-column">
+			      	{{person[7]}}
+			    </td>
+			     <td class="task-status other-column">
+			    	{{person[8]}}
+			    </td>
+
+			  </tr>
+		   	{% endfor %}
+		   </tbody>
+		</table>
+	{% endif %}
+
+	{%if engaged_people %}
+	<label class="small"> Engaged People - Click on any name to see their detailed profile and content journey</label>
+	<br/><br/>
+	<table class="nc-cal-table table-header">
+			<thead>
+				<tr>
+					<th class="sortable title-column">
+						<label class="small">Thumbnail</label>
+					</th>
+				    <th class="sortable title-column">
+						<label class="small">Name</label>    
+				    </th>
+				   	<th class="sortable title-column">
+						<label class="small">Title</label>    
+				    </th>
+				     <th class="sortable title-column">
+						<label class="small">Company</label>  
+
+				    </th>
+				     <th class="sortable title-column">
+						<label class="small">Klout</label>    
+				    </th>
+				     <th class="sortable title-column">
+						<label class="small">Followers</label>    
+				    </th>
+
+			
+				    <th class="sortable title-column">
+						<label class="small">Last Seen</label>    
+				    </th>
+				     <th class="sortable title-column">
+						<label class="small">First Seen</label>    
+				    </th>
+				     <th class="sortable title-column">
+						<label class="small">Importance</label>    
+				    </th>
+				</tr>
+			</thead>
+			<tbody>
+	    	{% for person in engaged_people %}
+			  <tr>
+			  	<td class="task-status other-column">
+			    	<img class="user-avatar" src='{{person[12]}}'/>
+			    </td>
+			    <td class="task-status other-column">
+			    	<a href="/{{person[14]}}/person/{{person[3]}}">{{person[1]}}</a>
+			    </td>
+				<td class="task-status other-column">
+			    	{{person[10]}}
+			    </td>
+			     <td class="task-status other-column">
+			    	{{person[11]}}
+			    </td>
+			   
+			     <td class="task-status other-column">
+			    	{{person[6]}}
+			    </td>
+			     <td class="task-status other-column">
+			    	{{person[9]}}
+			    </td>
+			    
+			     
+			     <td class="task-status other-column">
+			      	{{person[7]}}
+			    </td>
+			     <td class="task-status other-column">
+			    	{{person[8]}}
+			    </td>
+			    <td class="task-status other-column">
+			    	{{"{0:.0f}".format(person[15])}}
+			    </td>
+			  </tr>
+		   	{% endfor %}
+		   </tbody>
+		</table>
+	{% endif %}
+	
+	{%if recent_people %}
+	<label class="small">Recent People - Click on any name to see their detailed profile and content journey</label>
+	<table class="nc-cal-table table-header">
+			<thead>
+				<tr>
+					<th class="sortable title-column">
+						<label class="small">Thumbnail</label>
+					</th>
+				    <th class="sortable title-column">
+						<label class="small">Name</label>    
+				    </th>
+				   	<th class="sortable title-column">
+						<label class="small">Title</label>    
+				    </th>
+				     <th class="sortable title-column">
+						<label class="small">Company</label>  
+
+				    </th>
+				     <th class="sortable title-column">
+						<label class="small">Klout</label>    
+				    </th>
+				     <th class="sortable title-column">
+						<label class="small">Followers</label>    
+				    </th>
+
+			
+				    <th class="sortable title-column">
+						<label class="small">Last Seen</label>    
+				    </th>
+				     <th class="sortable title-column">
+						<label class="small">First Seen</label>    
+				    </th>
+				     <th class="sortable title-column">
+						<label class="small">Importance</label>    
+				    </th>
+				</tr>
+			</thead>
+			<tbody>
+	    	{% for person in recent_people %}
+			  <tr>
+			  	<td class="task-status other-column">
+			    	<img class="user-avatar" src='{{person[12]}}'/>
+			    </td>
+			    <td class="task-status other-column">
+			    	<a href="/{{person[14]}}/person/{{person[3]}}">{{person[1]}}</a>
+			    </td>
+				<td class="task-status other-column">
+			    	{{person[10]}}
+			    </td>
+			     <td class="task-status other-column">
+			    	{{person[11]}}
+			    </td>
+			   
+			     <td class="task-status other-column">
+			    	{{person[6]}}
+			    </td>
+			     <td class="task-status other-column">
+			    	{{person[9]}}
+			    </td>
+			    
+			     
+			     <td class="task-status other-column">
+			      	{{person[7]}}
+			    </td>
+			     <td class="task-status other-column">
+			    	{{person[8]}}
+			    </td>
+			    <td class="task-status other-column">
+			    	{{"{0:.0f}".format(person[15])}}
+			    </td>
+			  </tr>
+		   	{% endfor %}
+		   </tbody>
+		</table>
+    {% endif %}
+
+    {%if all_people %}
+	<label class="small"> All People - Click on any name to see their detailed profile and content journey</label>
+	<table class="nc-cal-table table-header">
+			<thead>
+				<tr>
+					<th class="sortable title-column">
+						<label class="small">Thumbnail</label>
+					</th>
+				    <th class="sortable title-column">
+						<label class="small">Name</label>    
+				    </th>
+				   	<th class="sortable title-column">
+						<label class="small">Title</label>    
+				    </th>
+				     <th class="sortable title-column">
+						<label class="small">Company</label>  
+
+				    </th>
+				     <th class="sortable title-column">
+						<label class="small">Klout</label>    
+				    </th>
+				     <th class="sortable title-column">
+						<label class="small">Followers</label>    
+				    </th>
+
+			
+				    <th class="sortable title-column">
+						<label class="small">Last Seen</label>    
+				    </th>
+				     <th class="sortable title-column">
+						<label class="small">First Seen</label>    
+				    </th>
+				     <th class="sortable title-column">
+						<label class="small">Importance</label>    
+				    </th>
+				</tr>
+			</thead>
+			<tbody>
+	    	{% for person in all_people %}
+			  <tr>
+			  	<td class="task-status other-column">
+			    	<img class="user-avatar" src='{{person[12]}}'/>
+			    </td>
+			    <td class="task-status other-column">
+			    	<a href="/{{person[14]}}/person/{{person[3]}}">{{person[1]}}</a>
+			    </td>
+				<td class="task-status other-column">
+			    	{{person[10]}}
+			    </td>
+			     <td class="task-status other-column">
+			    	{{person[11]}}
+			    </td>
+			   
+			     <td class="task-status other-column">
+			    	{{person[6]}}
+			    </td>
+			     <td class="task-status other-column">
+			    	{{person[9]}}
+			    </td>
+			    
+			     
+			     <td class="task-status other-column">
+			      	{{person[7]}}
+			    </td>
+			     <td class="task-status other-column">
+			    	{{person[8]}}
+			    </td>
+			    <td class="task-status other-column">
+			    	{{"{0:.0f}".format(person[15])}}
+			    </td>
+			  </tr>
+		   	{% endfor %}
+		   </tbody>
+		</table>
+	{% endif %}
+{% endblock %}
+
+

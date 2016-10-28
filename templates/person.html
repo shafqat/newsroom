@@ -1,0 +1,98 @@
+{# index.html #}
+{% extends "base.html" %}
+{% block body %}
+
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='app.css') }}">
+	<h3 class="light fleft">Go Back to <a href = "/peopleDB/">PeopleDB Home</a></h3>	{%if person_result %}
+	<H3> Person Detail Page </H3>
+	<table cellpadding="3" cellspacing="0">
+    	{% for person in person_result %}
+		  <tr>
+		  	<td class="nc-performance-title social">
+		    	<img class="user-avatar medium" src='{{person[12]}}' height=50 width =50 />
+		    </td>
+		    <td class="nc-performance-title social">
+		    	<p><a href="http://www.twitter.com/{{person[3]}}">{{person[1]}}</a></p>
+		    </td>
+		    <td class="nc-performance-title social">
+		    	<p>{{person[10]}}</p>
+		    </td>
+		     <td class="nc-performance-title social">
+		    	<p>{{person[11]}}</p>
+		    </td>
+		    <td class="nc-performance-title social">
+		    	<div class="status post">Importance Score: {{person[15]}}</div>
+		    </td>
+		  </tr>
+		  <tr>
+		  	 <td></td>
+		     <td class="nc-performance-title social">
+		      	<p>Last seen: {{person[7]}}</p>
+		    </td>
+		  </tr>
+		  <tr>
+		  	 <td></td>
+		    <td class="nc-performance-title social">
+		    	<p>First seen: {{person[8]}}</p>
+		    </td>
+		   </tr>
+		   <tr>
+		   	<td></td>
+		    <td class="nc-performance-title social">
+		    	<p>Klout Score: {{person[6]}}</p>
+		    </td>
+		   	</tr>
+			<tr>
+		   	<td></td>
+		    <td class="nc-performance-title social">
+		    	<p>Twitter Followers: {{person[9]}}</p>
+		    </td>
+		   	</tr>
+		  </tr>
+	   	{% endfor %}
+	</table>
+	{% endif %}
+	<br />
+
+	{%if journey_result %}
+	<H3> Content Journey </H3>
+
+
+
+	<table class="nc-cal-table table-header">
+			<thead>
+				<tr>
+				    <th class="sortable title-column">
+						<label class="small">Tweet ID</label>    
+				    </th>
+
+				     <th class="sortable title-column">
+						<label class="small">Date</label>  
+				    </th>
+				     <th class="sortable title-column">
+						<label class="small">Content</label>    
+				    </th>
+				</tr>
+			</thead>
+			<tbody>
+		
+    	{% for journey_step in journey_result %}
+		  <tr>
+			  <td class="task-status other-column">
+				<a href="http://www.twitter.com/{{journey_step[0]}}/statuses/{{journey_step[1]}}">{{journey_step[1]}}</a>
+			</td>
+			  	<td class="task-status other-column">
+				{{journey_step[3]}}
+			</td>
+			  	<td class="task-status other-column">
+				{{journey_step[4]}}
+			</td>
+
+		  </tr>
+		  	</tbody>
+	   	{% endfor %}
+	</table>
+	{% endif %}
+{% endblock %}
+
+

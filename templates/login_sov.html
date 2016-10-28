@@ -1,0 +1,62 @@
+{# index.html #}
+{% extends "base.html" %}
+
+{% block body %}
+
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+    <!--Search form-->
+    <br />
+    <form method="post" action="/sov/login_sov/tw/">
+        <input type="text" name="searchterm1" value="{{search1}}" class="textbox"/>
+        <input type="text" name="searchterm2" value="{{search2}}" class="textbox"/>
+        <input type="text" name="searchterm3" value="{{search3}}" class="textbox"/>
+        <input type="text" name="searchterm4" value="{{search4}}" class="textbox"/>
+        <input type="text" name="topics" value="{{topics}}" class="textbox"/>
+
+
+
+        <input type="submit" value="Calculate SOV Bitches!">
+    </form>
+
+    <div class="container">
+   
+    <div><h3>Calculation Share of Voice for {{ search1 }}, {{ search2 }}, {{ search3 }}, {{ search4 }} on the following topics {{ topics }}</h3><br />
+         
+        {%if response1.data %}
+            {% print response1.data['search_metadata']['count'] %}
+            {% print response2.data['search_metadata']['count'] %}
+            {% print response3.data['search_metadata']['count'] %}
+            {% print response4.data['search_metadata']['count'] %}
+            {% print response4.data %}
+            {% for item in response4.data['statuses'] %}
+                <table cellpadding="3" cellspacing="0">
+                  <tr>
+                    <td class="nc-performance-image">
+                      <img class="image-thumbnail" src="{{item['user'].profile_image_url_https }}" />
+                    </td>
+                    <td class="nc-performance-title social">
+                      <h4>{{ item['text'][0:110] }}</h4>
+                        {% if item['entities']['media'] %}
+                            <img src="{{item['entities']['media'][0].media_url_https}}" width=350px /><br />
+                        {% endif %}
+                      <span class="sub-title-wrapper" ng-if="post.type == 'twitter'">
+                        {{item['user'].name}}
+                        <a href="http://twitter.com/{{item['user'].screen_name}}" target="_blank">
+                          @{{item['user'].screen_name}} 
+                        </a>
+                        On: {{ item['created_at'][:-11] }} 
+                      </span>
+                    </td>
+                  </tr>
+                </table>
+            {% endfor %}
+        {% endif %}
+    </div>
+  
+   
+
+    </div>
+
+    
+                
+{% endblock body %}

@@ -1,0 +1,122 @@
+{# index.html #}
+{% extends "base.html" %}
+
+{% block body %}
+
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+    <!--Search form-->
+    <br />
+    <form method="post" action="/listening/login/tw/">
+        <input type="text" name="searchterm1" value="{{search1}}" class="textbox"/>
+        <input type="text" name="searchterm2" value="{{search2}}" class="textbox"/>
+        <input type="text" name="searchterm3" value="{{search3}}" class="textbox"/>
+
+        <input type="submit" value="Start Listening">
+    </form>
+
+    <div class="container">
+   
+    <div class="column-left"><h3>Search Query: {{ search1 }}</h3><br />
+         
+        {%if response1.data %}
+            {% for item in response1.data['statuses'] %}
+                <table cellpadding="3" cellspacing="0">
+                  <tr>
+                    <td class="nc-performance-image">
+                      <img class="image-thumbnail" src="{{item['user'].profile_image_url_https }}" />
+                    </td>
+                    <td class="nc-performance-title social">
+                      <h4>{{ item['text'][0:110] }}</h4>
+                        {% if item['entities']['media'] %}
+                            <img src="{{item['entities']['media'][0].media_url_https}}" width=350px /><br />
+                        {% endif %}
+                      <span class="sub-title-wrapper" ng-if="post.type == 'twitter'">
+                        {{item['user'].name}}
+                        <a href="http://twitter.com/{{item['user'].screen_name}}" target="_blank">
+                          @{{item['user'].screen_name}} 
+                        </a>
+                        On: {{ item['created_at'][:-11] }} 
+                        <a href="https://twitter.com/intent/tweet?in_reply_to={{item['id']}}" target="_blank" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" ><img src="https://si0.twimg.com/images/dev/cms/intents/icons/reply.png" /></a>
+                        <a href="https://twitter.com/intent/retweet?tweet_id={{item['id']}}" target="_blank" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" ><img src="https://si0.twimg.com/images/dev/cms/intents/icons/retweet.png" /></a>
+                        <a href="https://twitter.com/intent/favorite?tweet_id={{item['id']}}" target="_blank" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" ><img src="https://si0.twimg.com/images/dev/cms/intents/icons/favorite.png" /></a>
+                      </span>
+                    </td>
+                  </tr>
+                </table>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div class="column-center"><h3>Search Query: {{ search2 }}</h3><br />
+        {%if response2.data %}
+            {% for item in response2.data['statuses'] %}
+                  <table cellpadding="3" cellspacing="0">
+                  <tr>
+                    <td class="nc-performance-image">
+                      <img class="image-thumbnail" src="{{item['user'].profile_image_url_https }}" />
+                    </td>
+                    <td class="nc-performance-title social">
+                      <h4>{{ item['text'][0:110] }}</h4>
+                        {% if item['entities']['media'] %}
+                            <img src="{{item['entities']['media'][0].media_url_https}}" width=350px /><br />
+                        {% endif %}
+                      <span class="sub-title-wrapper" ng-if="post.type == 'twitter'">
+                        {{item['user'].name}}
+                        <a href="http://twitter.com/{{item['user'].screen_name}}" target="_blank">
+                          @{{item['user'].screen_name}} 
+                        </a>
+                        On: {{ item['created_at'][:-11] }}
+                        <a href="https://twitter.com/intent/tweet?in_reply_to={{item['id']}}" target="_blank" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" ><img src="https://si0.twimg.com/images/dev/cms/intents/icons/reply.png" /></a>
+                        <a href="https://twitter.com/intent/retweet?tweet_id={{item['id']}}" target="_blank" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" ><img src="https://si0.twimg.com/images/dev/cms/intents/icons/retweet.png" /></a>
+                        <a href="https://twitter.com/intent/favorite?tweet_id={{item['id']}}" target="_blank" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" ><img src="https://si0.twimg.com/images/dev/cms/intents/icons/favorite.png" /></a>
+                      </span>
+                    </td>
+                  </tr>
+                </table>
+            {% endfor %}
+        {% endif %}
+    </div>
+        
+    <div class="column-right"> <h3>Search Query: {{ search3 }}</h3><br />
+        {%if response3.data %}
+            {% for item in response3.data['statuses'] %}
+                  <table cellpadding="3" cellspacing="0">
+                  <tr>
+                    <td class="nc-performance-image">
+                      <img class="image-thumbnail" src="{{item['user'].profile_image_url_https }}" />
+                    </td>
+                    <td class="nc-performance-title social">
+                      <h4>{{ item['text'][0:110] }}</h4>
+                        {% if item['entities']['media'] %}
+                            <img src="{{item['entities']['media'][0].media_url_https}}" width=350px /><br />
+                        {% endif %}
+                      <span class="sub-title-wrapper" ng-if="post.type == 'twitter'">
+                        {{item['user'].name}}
+                        <a href="http://twitter.com/{{item['user'].screen_name}}" target="_blank">
+                          @{{item['user'].screen_name}} 
+                        </a>
+                        On: {{ item['created_at'][:-11] }}
+                        <a href="https://twitter.com/intent/tweet?in_reply_to={{item['id']}}" target="_blank" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" ><img src="https://si0.twimg.com/images/dev/cms/intents/icons/reply.png" /></a>
+                        <a href="https://twitter.com/intent/retweet?tweet_id={{item['id']}}" target="_blank" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" ><img src="https://si0.twimg.com/images/dev/cms/intents/icons/retweet.png" /></a>
+                        <a href="https://twitter.com/intent/favorite?tweet_id={{item['id']}}" target="_blank" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" ><img src="https://si0.twimg.com/images/dev/cms/intents/icons/favorite.png" /></a>
+                      </span>
+                    </td>
+                  </tr>
+                </table>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    </div>
+
+    
+                
+{% endblock body %}
