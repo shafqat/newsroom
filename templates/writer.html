@@ -3,10 +3,11 @@
 {% block body %}
 
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='mason.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style2.css') }}">
 	<p class="light fleft">Go Back to <a href = "/">Writers</a></p>
 	{%if writer_result %}
 	<H3> Writer Profile Page </H3>
-	<table cellpadding="3" cellspacing="0">
+	<table id="mainArea" cellpadding="3" cellspacing="0">
     	{% for writer in writer_result %}
 		  <tr>
 		  	<td>
@@ -26,20 +27,27 @@
 		  </tr>
 		  <tr>
 		  	<td></td>
-		     <td >
-		      	<p>Bio: {{writer[2]}}</p>
+		     <td>
+		      	<p class="sectionTitle">Bio: </p>
+		      	<p class="sectionContent">{{writer[2]}}</p>
 		    </td>
 		  </tr>
-		 </table>
+		 <!-- </table>
 		 	<table cellpadding="3" cellspacing="0">
-
+ -->
 		  <tr>
 		  	<td></td>
 		    <td >
-		    	<p>Contact: {{writer[12]}}</p>
+		    	<p class="sectionTitle">Contact: </p>
+		    	<p class="sectionContent">{{writer[12]}}</p>
+		    </td>
+		   </tr>
+		   <tr>
+		    <td>
 		    </td>
 		    <td >
-		    	<p>Location: {{writer[4]}} {{writer[5]}}</p>
+		    	<p class="sectionTitle">Location: </p>
+		    	<p class="sectionContent">{{writer[4]}} {{writer[5]}}</p>
 		    </td>
 		   </tr>
 
@@ -47,25 +55,36 @@
 			<tr>
 		   	<td></td>
 		    <td >
-		    	<p>Areas of Expertise: {{writer[7]}} {{writer[16]}} {{writer[17]}}</p>
+		    	<p class="sectionTitle">Areas of Expertise:</p>
+		    	<p class="sectionContent"> {{writer[7]}} {{writer[16]}} {{writer[17]}}</p>
 		    </td>
 		   	</tr>
 			<tr>
 		   	<td></td>
 		    <td >
-		    	<p>Style Highlights: {{writer[8]}}</p>
+		    	<p class="sectionTitle">Style Highlights: </p>
+		    	<p class="sectionContent">{{writer[8]}}</p>
 		    </td>
+		    </tr>
+		    <tr>
+		    <td></td>
 		   	<td >
-		    	<p>Brands Worked With: {{writer[9]}}</p>
+		    	<p class="sectionTitle">Brands Worked With:</p>
+		    	<p class="sectionContent"> {{writer[9]}}</p>
 		    </td>
 		   	</tr>
 			<tr>
 		   	<td></td>
 		    <td >
-		    	<p>Where Pubished: {{writer[10]}}</p>
+		    	<p class="sectionTitle">Where Pubished: </p>
+		    	<p class="sectionContent"> {{writer[10]}}</p>
 		    </td>
+		    </tr>
+		    <tr>
+		    <td></td>
 		    <td >
-		    	<p>Writing Sample: {{writer[11]}}</p>
+		    	<p class="sectionTitle">Writing Sample: </p>
+		    	<p class="sectionContent">{{writer[11]}}</p>
 		    </td>
 		   	</tr>
 		  </tr>
