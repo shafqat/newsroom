@@ -17,106 +17,108 @@
     </div>
     </header>
 
-
 <section class="content">
     <p class="back-btn">Go Back to <a href="/">NewsRoom Directory</a></p>
 
     {%if writer_result %}
     {% for writer in writer_result %}
 
+    <form name="myform" action="/submit_changes/{{writer[0]}}/" method="GET">
+
     <div class="writer-info clearfix">
         <div class="left">
             <div class="padding">
                 <div class="image-box">
-                    <img src="{{writer[20]}}">
+                    <TEXTAREA Name="writer_image" rows="1" cols="100">{{writer[20]}}</textarea><img src="{{writer[20]}}">
                 </div>
             </div>
         </div>
         <div class="middle">
             <div class="padding">
-                <h2>{%if writer[3]:%}
-                        <a href="{{writer[3]}}">{{writer[1]}}</a>
-                    {%else:%}
-                        {{writer[1]}}
-                    {%endif%}
-                    
-                <p class="sectionTitle">Writer Tier: <span>{{writer[15]}} &nbsp;&nbsp;Payment Rate: <span>{{writer[13]}} &nbsp;&nbsp;Rating: <span>{{writer[14]}}</span></p>
+                <h2>Edit Writer</h2>
+                Name: <input type="text" name="writer_name" length="50" value="{{writer[1]}}"><br><br>
+                Portfolio Link: <input type="text" name="writer_portfolio" length="50" value="{{writer[3]}}">
+                
+                <p class="sectionTitle">Writer Tier: <span>
 
+                    <select name="writer_tier">
+                      <option value="Standard" {%if writer[15] == "Standard"%}Selected{%endif%} >Standard</option>
+                      <option value="Premium" {%if writer[15] == "Premium"%}Selected{%endif%}  >Premium</option>
+                    </select>
+
+                </span>&nbsp;&nbsp;Payment Rate: <span><input type="text" name="writer_rate" length="50" value="{{writer[13]}}"></span>
+                &nbsp;&nbsp;Rating: <span><input type="text" name="writer_rating" length="10" value="{{writer[14]}}"></span>
+
+                </p>
                 <div class="bio">
-                    <p class="sectionContent">{{writer[2]}}</p>
+                    <p class="sectionContent">Bio:
+
+                    <TEXTAREA Name="writer_bio" rows="8" cols="100">{{writer[2]}}</TEXTAREA></p>
                 </div>
 
 
                 <div class="gen-text clearfix">
-                    <p class="sectionTitle">Location: {{writer[4]}} {{writer[6]}}</p>
+                    <p class="sectionTitle">Location: </p>
+                    <p class="sectionContent"><input type="text" name="writer_city" length="50" value="{{writer[4]}}"><input type="text" name="writer_country" length="50" value="{{writer[6]}}"></p>
                 </div>
 
                 <div class="gen-text">
                     <p class="sectionTitle">Where Pubished: </p>
-                    <p class="sectionContent">{{writer[10]}}</p>
+                    <p class="sectionContent"><TEXTAREA Name="writer_published" rows="8" cols="100">{{writer[10]}}</textarea>
                 </div>
-
                 <div class="gen-text">
-                    <p class="sectionTitle">Style Highlights: </p>
-                    <p class="sectionContent">{{writer[8]}}</p>
+                    <p class="sectionTitle">Stlye Highlights: </p>
+                    <p class="sectionContent"><TEXTAREA Name="writer_style" rows="8" cols="100">{{writer[8]}}</textarea>
                 </div>
 
                 <div class="gen-text">
                     <p class="sectionTitle">Brands Worked With: </p>
-                    <p class="sectionContent">{{writer[9]}}</p>
+                    <p class="sectionContent"><TEXTAREA Name="writer_brands" rows="8" cols="100">{{writer[9]}}</textarea>
                 </div>
 
-                <div class="gen-text">
+                 <div class="gen-text">
                     <p class="sectionTitle">Testimonials: </p>
-                    <p class="sectionContent">{{writer[30]}}</p>
+                    <p class="sectionContent"><TEXTAREA Name="writer_testimonials" rows="8" cols="100">{{writer[30]}}</textarea>
                 </div>
 
                 <div class="gen-text">
                     <p class="sectionTitle">Notes: </p>
-                    <p class="sectionContent">{{writer[19]}}</p>
+                    <p class="sectionContent"><TEXTAREA Name="writer_notes" rows="8" cols="100">{{writer[19]}}</textarea>
+                </div>
+
+                <div>
+                   <p class="sectionTitle">Writing Sample 1: </p><TEXTAREA Name="writer_sample1" rows="1" cols="100">{{writer[11]}}</textarea>
+                   <p class="sectionTitle">Writing Sample 2: </p><TEXTAREA Name="writer_sample2" rows="1" cols="100">{{writer[21]}}</textarea>
+                   <p class="sectionTitle">Writing Sample 3: </p><TEXTAREA Name="writer_sample3" rows="1" cols="100">{{writer[22]}}</textarea>
+                   <p class="sectionTitle">Writing Sample 4: </p><TEXTAREA Name="writer_sample4" rows="1" cols="100">{{writer[23]}}</textarea>
+                   <p class="sectionTitle">Writing Sample 5: </p><TEXTAREA Name="writer_sample5" rows="1" cols="100">{{writer[24]}}</textarea>
+                   <p class="sectionTitle">Writing Sample 6: </p><TEXTAREA Name="writer_sample6" rows="1" cols="100">{{writer[25]}}</textarea>
                 </div>
             </div>
 
         </div>
         <div class="right">
-            <p class="sectionContent">{{writer[12]}}</p>
+            <p class="sectionContent">Contact: <input type="text" name="writer_contact" length="100" value="{{writer[12]}}"></p>
             <div class="tag-wrapper">
-                <span>{{writer[7]}}</span> <span>{{writer[16]}}</span> <span>{{writer[17]}}</span>
+                Tags: <span><input type="text" name="writer_tag1" length="50" value="{{writer[7]}}"></span> <span><input type="text" name="writer_tag2" length="50" value="{{writer[16]}}"></span> <span><input type="text" name="writer_tag3" length="50" value="{{writer[17]}}"></span>
             </div>
+
         </div>
     </div>
-    (<a href="/writer/edit/{{writer[0]}}">Edit</a>)</h2>    (<a href="/writer/delete/{{writer[0]}}">Delete</a>)</h2>
 
+
+      
+
+
+
+
+    <br><input type="submit" value="Submit Changes">
 
     {% endfor %}
 
-
-    <div class="inner">
-        {%if article_result%}
-
-        <div class="masonry">
-
-            {% for article in article_result %}
-
-            <div class="item">
-                <img src="{{article['thumbnail_url']}}">
-                <p><a href="{{article['url']}}">{{article['title']}}</a> - Published By {{article['provider_name']}}</p>
-
-                <p>{{article['description']}}</p>
-            </div>
-
-            {% endfor %}
-
-            
-
-        </div>
-        {% endif %}
-
-
-    </div>
-
-
     {% endif %}
+
+</form>
 
 
 </section>

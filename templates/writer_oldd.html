@@ -1,0 +1,106 @@
+{# index.html #}
+{% extends "base.html" %}
+{% block body %}
+
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='mason.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style2.css') }}">
+	<p class="light fleft">Go Back to <a href = "/">Writers</a></p>
+	{%if writer_result %}
+	<table id="mainArea" cellpadding="3" cellspacing="0">
+    	{% for writer in writer_result %}
+		  <tr>
+		  	
+		  	<td >
+		    	<img src='{{writer[20]}}' height=100 width=100 />
+		   
+		    	<p><a href="{{writer[3]}}">{{writer[1]}}</a></p>
+		    </td>
+		    
+		  </tr>
+		    
+		  <tr>
+		  	<td >
+		    	<p class="sectionTitle">Writer Tier: </p>
+		    	<p class="sectionContent">{{writer[15]}}</p>
+		    </td>
+		  </tr>
+		  <tr>
+		     <td>
+		      	<p class="sectionTitle">Bio: </p>
+		      	<p class="sectionContent">{{writer[2]}}</p>
+		    </td>
+		  </tr>
+		 <!-- </table>
+		 	<table cellpadding="3" cellspacing="0">
+ -->
+		  <tr>
+		    <td >
+		    	<p class="sectionTitle">Contact: </p>
+		    	<p class="sectionContent">{{writer[12]}}</p>
+		    </td>
+		   </tr>
+		   <tr>
+
+		    <td >
+		    	<p class="sectionTitle">Location: </p>
+		    	<p class="sectionContent">{{writer[4]}} {{writer[5]}}</p>
+		    </td>
+		   </tr>
+
+		   
+			<tr>
+		    <td >
+		    	<p class="sectionTitle">Areas of Expertise:</p>
+		    	<p class="sectionContent"> {{writer[7]}} {{writer[16]}} {{writer[17]}}</p>
+		    </td>
+		   	</tr>
+			<tr>
+		    <td >
+		    	<p class="sectionTitle">Style Highlights: </p>
+		    	<p class="sectionContent">{{writer[8]}}</p>
+		    </td>
+		    </tr>
+		    <tr>
+		   	<td >
+		    	<p class="sectionTitle">Brands Worked With:</p>
+		    	<p class="sectionContent"> {{writer[9]}}</p>
+		    </td>
+		   	</tr>
+			<tr>
+		    <td >
+		    	<p class="sectionTitle">Where Pubished: </p>
+		    	<p class="sectionContent"> {{writer[10]}}</p>
+		    </td>
+		    </tr>
+		    <tr>
+		    <td >
+		    	<p class="sectionTitle">Writing Sample: </p>
+		    	<p class="sectionContent">{{writer[11]}}</p>
+		    </td>
+		   	</tr>
+		  </tr>
+
+	   	{% endfor %}
+	</table>
+	<br><br>
+	{% endif %}
+
+	
+	{%if article_result%}
+
+<div class="masonry">    
+
+	{% for article in article_result %}
+
+	<div class="item">
+		<img src="{{article['thumbnail_url']}}">
+	    <p><a href="{{article['url']}}">{{article['title']}}</a></p>
+	    <p>{{article['description']}}</p>
+  	</div>
+		{% endfor %}
+</div>
+	{% endif %}
+
+{% endblock %}
+
+

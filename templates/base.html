@@ -2,8 +2,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>NewsRoom Marketplace</title>
-        <link href="http://fonts.googleapis.com/css?family=Rokkitt:400,700|Lato:400,300" rel="stylesheet" type="text/css">
+        <title>The NewsRoom - Creative Talent Marketplace</title>
+        <script type="text/javascript">
+
+		 function toggle(source) {
+		        var aInputs = document.getElementsByTagName('input');
+		        for (var i=0;i<aInputs.length;i++) {
+		            if (aInputs[i] != source && aInputs[i].className == source.className) {
+		                aInputs[i].checked = source.checked;
+		            }
+		        }
+		    }
+        </script>
     </head>
     <body>
         {% block body %}{% endblock %}

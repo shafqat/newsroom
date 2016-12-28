@@ -1,0 +1,153 @@
+{# index.html #}
+{% extends "base.html" %}
+{% block body %}
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+
+
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='manaj.css') }}">
+
+
+
+<body>
+    <header class="header">
+    <div class="top-inner">
+        <h1><img src="/static/newscred-logo-mark-cmyk.svg" width="30px"> The NewsRoom - Creative Talent Marketplace</h1>
+    </div>
+    <div class="top-inner">
+         <form name="myform" action="/" method="GET">
+            <input type="text" name="search_query" length="50" placeholder="Search writers or topics">
+            <input type="submit" value="Search">
+        </form>
+        <a href="/writer/create/" style="float:right"> Add Writer</a><br>
+    </div>
+    </header>
+
+
+    
+   
+
+
+
+    <section class="content">
+        <div class="left-main">
+            <form name="filters" action="/" method="GET">
+            <table cellpadding="10" cellspacing="0">
+                <thead>
+                <tr>
+                    <th class="sortable title-column column-name">
+                        <label class="small">Filters</label>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr class="lefty">
+                        <td>
+                        <label class="small">Location</label><br>
+                            <input type="checkbox" name="location" class="us" {%if "US" in formdetails%}Checked{%endif%} value="US" onClick="toggle(this)"> US<br>
+                            &nbsp;&nbsp;&nbsp;<input type="checkbox" class = "us" name="cities" {%if "new york" in formdetails%}Checked{%endif%} value="new york"> New York<br>
+                            &nbsp;&nbsp;&nbsp;<input type="checkbox" class = "us" name="cities" {%if "boston" in formdetails%}Checked{%endif%} value="boston"> Boston<br>
+                            &nbsp;&nbsp;&nbsp;<input type="checkbox" class = "us" name="cities" {%if "los angeles" in formdetails%}Checked{%endif%} value="los angeles"> Los Angeles<br>
+                            &nbsp;&nbsp;&nbsp;<input type="checkbox" class = "us" name="cities" {%if "seattle" in formdetails%}Checked{%endif%} value="seattle"> Seattle<br>
+
+                            <input type="checkbox" name="location" {%if "UK" in formdetails%}Checked{%endif%} value="UK"> UK<br>
+                            <input type="checkbox" name="location" {%if "India" in formdetails%}Checked{%endif%} value="India"> India<br><br>
+                        <label class="small">Tier</label><br>
+                            <input type="checkbox" name="tier" {%if "premium" in formdetails%}Checked{%endif%} value="premium"> Premium<br>
+                            <input type="checkbox" name="tier" {%if "standard" in formdetails%}Checked{%endif%} value="standard"> Standard<br><br>
+                        <label class="small">Format</label><br>
+                            <input type="checkbox" name="format" {%if "written" in formdetails%}Checked{%endif%} value="written"> Written<br>
+                            <input type="checkbox" name="format" class="visual_format" {%if "visual" in formdetails%}Checked{%endif%} value="visual" onClick="toggle(this)"> Visual<br>
+                            &nbsp;&nbsp;&nbsp;<input type="checkbox" name="format" class="visual_format" {%if "infographics" in formdetails%}Checked{%endif%} value="infographics"> Infographics<br>
+                            &nbsp;&nbsp;&nbsp;<input type="checkbox" name="format" class="visual_format" {%if "interactives" in formdetails%}Checked{%endif%} value="interactives"> Interactives<br>
+                            &nbsp;&nbsp;&nbsp;<input type="checkbox" name="format" class="visual_format" {%if "animation" in formdetails%}Checked{%endif%} value="animation"> Animation<br>
+                            &nbsp;&nbsp;&nbsp;<input type="checkbox" name="format" class="visual_format" {%if "photography" in formdetails%}Checked{%endif%} value="photography"> Photography<br>
+                            &nbsp;&nbsp;&nbsp;<input type="checkbox" name="format" class="visual_format" {%if "design" in formdetails%}Checked{%endif%} value="design"> Design<br>
+                            &nbsp;&nbsp;&nbsp;<input type="checkbox" name="format" class="visual_format" {%if "video" in formdetails%}Checked{%endif%} value="video"> Video<br>
+
+
+                            <input type="checkbox" name="format" {%if "other" in formdetails%}Checked{%endif%} value="other"> Other<br><br>
+
+                        
+                        <label class="small">Area of Expertise</label><br>
+                            <input type="checkbox" name="expertise" class="expertise_life" {%if "lifestyle" in formdetails%}Checked{%endif%} value="lifestyle" onClick="toggle(this)"> Lifestyle<br>
+                            &nbsp;&nbsp;&nbsp;<input type="checkbox" name="expertise" class="expertise_life" {%if "travel" in formdetails%}Checked{%endif%} value="travel"> Travel<br>
+                            &nbsp;&nbsp;&nbsp;<input type="checkbox" name="expertise" class="expertise_life" {%if "auto" in formdetails%}Checked{%endif%} value="auto"> Auto<br>
+                            &nbsp;&nbsp;&nbsp;<input type="checkbox" name="expertise" class="expertise_life" {%if "beauty" in formdetails%}Checked{%endif%} value="beauty"> Beauty<br>
+                            &nbsp;&nbsp;&nbsp;<input type="checkbox" name="expertise" class="expertise_life" {%if "parenting" in formdetails%}Checked{%endif%} value="parenting"> Parenting<br>
+                            &nbsp;&nbsp;&nbsp;<input type="checkbox" name="expertise" class="expertise_life" {%if "career" in formdetails%}Checked{%endif%} value="career"> Career<br>
+                            <input type="checkbox" name="expertise" {%if "finance" in formdetails%}Checked{%endif%} value="finance"> Finance<br>
+                            <input type="checkbox" name="expertise" {%if "health" in formdetails%}Checked{%endif%} value="health"> Health<br>
+                            <input type="checkbox" name="expertise" {%if "business" in formdetails%}Checked{%endif%} value="business"> Business<br>
+                            <input type="checkbox" name="expertise" {%if "tech" in formdetails%}Checked{%endif%} value="tech"> Technology<br>
+                            <input type="checkbox" name="expertise" {%if "international" in formdetails%}Checked{%endif%} value="international"> International<br><br>
+
+
+ 
+
+
+
+
+                             <input type="submit" value="Filter">
+                        </td>
+                   </tr>
+                </tbody>
+            </table>
+            </form>
+        </div>
+        <div class="inner">
+            <table class="nc-cal-table table-header" cellpadding="0" cellspacing="0">
+                <thead>
+                <tr>
+                    <th class="sortable title-column column-name">
+                        <label class="small">Name</label>
+                    </th>
+                    <th class="sortable title-column column-contact">
+                        <label class="small">Contact</label>
+                    </th>
+                    <th class="sortable title-column column-bio">
+                        <label class="small">Bio</label>
+                    </th>
+                    <th class="sortable title-column column-location">
+                        <label class="small">Location</label>
+                    </th>
+                    <th class="sortable title-column column-expertise">
+                        <label class="small">Area of Expertise</label>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+            {% for writer in writers %}
+
+                <tr>
+
+                    <td class="task-status other-column column-name">
+                        <a href="/writer/{{writer[0]}}">{{writer[1]}}</a>
+                    </td>
+                    <td class="task-status other-column column-contact">
+                        {{writer[12]}}
+                    </td>
+                    <td class="task-status other-column column-bio">
+                        {{writer[2][0:300]}}...
+                    </td>
+                    <td class="task-status other-column column-location">
+                        {{writer[4]}} {{writer[6]}}
+
+                    </td>
+                    <td class="task-status other-column column-expertise">
+                        {{writer[7]}} {{writer[16]}} {{writer[17]}}
+                    </td>
+
+                </tr>
+                {% endfor %}
+
+
+                </tbody>
+            </table>
+        </div>
+        <div class="clearing">
+        </div>
+       
+    </section>
+</body>
+{% endblock %}
